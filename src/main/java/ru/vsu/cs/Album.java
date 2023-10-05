@@ -1,31 +1,49 @@
 package ru.vsu.cs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Album {
-    private final String id;
+    private String name;
+    private String id;
     private String userId;
     private final List<Image> imageList= new ArrayList<>();
+    private static Set<String> allAlbumsIds = new HashSet<>();
 
-    public Album(String userId, String id){
+    public Album(String userId, String name){
+        this.name = name;
         this.userId = userId;
-        this.id = id;
+        do {
+            id = UUID.randomUUID().toString();
+        } while (!allAlbumsIds.add(id));
     }
-    public Album(String userId, String id, Image img){
+    public Album(String userId, Image img, String name){
+        this.name = name;
         this.userId = userId;
-        this.id = id;
+        do {
+            id = UUID.randomUUID().toString();
+        } while (!allAlbumsIds.add(id));
         imageList.add(img);
     }
-    public Album(String userId, String id, List<Image> listImg){
+    public Album(String userId,  List<Image> listImg, String name){
+        this.name = name;
         this.userId = userId;
-        this.id = id;
+        do {
+            id = UUID.randomUUID().toString();
+        } while (!allAlbumsIds.add(id));
         imageList.addAll(listImg);
+    }
+
+    public static Set<String> getAllAlbumsIds() {
+        return allAlbumsIds;
+    }
+    public static void setAllAlbumsIds(Set<String> allAlbumsIds) {
+        Album.allAlbumsIds = allAlbumsIds;
     }
 
     public void addImage(Image img) {
         imageList.add(img);
     }
+    public void addImages(List<Image> imgs) { imageList.addAll(imgs);}
     public void removeImage(Image img) {
         imageList.remove(img);
     }
@@ -44,5 +62,12 @@ public class Album {
     }
     public List<Image> getImageList() {
         return new ArrayList<Image>(imageList);
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -2,28 +2,40 @@ package ru.vsu.cs;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class Image {
     private final LocalDateTime dataTime;
-    private final String id;
+    private String id;
     private Path location;
-    private String userId;
+    private String albumId;
+    private static Set<String> allImagesIds = new HashSet<>();
 
-    public Image(String userId, String id, Path location){
+    public Image(String albumId, Path location){
         this.dataTime = LocalDateTime.now();
-        this.userId = userId;
-        this.id = id;
+        this.albumId = albumId;
         this.location = location;
+        do {
+            id = UUID.randomUUID().toString();
+        } while (!allImagesIds.add(id));
     }
 
+    public static Set<String> getAllImagesIds() {
+        return allImagesIds;
+    }
+    public static void setAllImagesIds(Set<String> allImagesIds) {
+        Image.allImagesIds = allImagesIds;
+    }
     public LocalDateTime getDataTime() {
         return dataTime;
     }
     public String getUserId() {
-        return userId;
+        return albumId;
     }
     public void setUserId(String userId){
-        this.userId = userId;
+        this.albumId = userId;
     }
     public String getId() {
         return id;
