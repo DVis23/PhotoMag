@@ -9,6 +9,10 @@ public abstract class Brush extends Tool {
     protected Brush(String id) {
         super(id);
     }
+
+    protected Brush() {
+    }
+
     public int getX() {
         return x;
     }

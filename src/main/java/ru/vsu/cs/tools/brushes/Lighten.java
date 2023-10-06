@@ -6,6 +6,13 @@ public class Lighten extends Brush {
 
     public Lighten(String id){
         super(id);
+        setType("Lighten");
+        value = 0;
+        x = 0;
+        y = 0;
+    }
+    public Lighten(){
+        setType("Lighten");
         value = 0;
         x = 0;
         y = 0;

@@ -6,6 +6,12 @@ public class Respective extends Framing {
 
     public Respective(String id){
         super(id);
+        setType("Respective");
+        x = 0; y = 0; z = 0;
+    }
+
+    public Respective() {
+        setType("Respective");
         x = 0; y = 0; z = 0;
     }
 

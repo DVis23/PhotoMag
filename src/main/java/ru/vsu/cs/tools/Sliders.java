@@ -9,6 +9,9 @@ public abstract class Sliders extends Tool {
         super(id);
     }
 
+    protected Sliders() {
+    }
+
     public int getValue() {
         return value;
     }

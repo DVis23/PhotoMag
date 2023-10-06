@@ -1,6 +1,17 @@
 package ru.vsu.cs;
 
-import java.nio.file.Path;
+import ru.vsu.cs.tools.brushes.Align;
+import ru.vsu.cs.tools.brushes.Lighten;
+import ru.vsu.cs.tools.framing.Crop;
+import ru.vsu.cs.tools.framing.Respective;
+import ru.vsu.cs.tools.framing.Rotate;
+import ru.vsu.cs.tools.sliders.Bright;
+import ru.vsu.cs.tools.sliders.Contrast;
+import ru.vsu.cs.tools.sliders.Saturation;
+
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 
 public class Generator {
@@ -14,10 +25,9 @@ public class Generator {
 
             User user = new User(uniqueId, uniqueName, true);
             List<Album> albums = generateRandomAlbums(user.getId());
-            for (int j = 0; j < albums.size(); j++) {
-                user.addAlbum(albums.get(j));
-            }
-            //user.addAlbums(albums);
+            user.addAlbums(albums);
+            List<Tool> tools = generateRandomTools();
+            user.addTools(tools);
             users.add(user);
         }
 
@@ -35,7 +45,7 @@ public class Generator {
         return names[randomIndex];
     }
 
-    private static List<Album> generateRandomAlbums(String userId) {
+    private static List<Album> generateRandomAlbums(String userId) throws IOException {
         List<Album> albums = new ArrayList<>();
         Random random = new Random();
         int countAlbums = random.nextInt(6);
@@ -50,28 +60,58 @@ public class Generator {
         return albums;
     }
 
-    private static List<Image> generateRandomImages(String albumId) {
+    private static List<Image> generateRandomImages(String albumId) throws IOException {
         List<Image> images = new ArrayList<>();
         Set<Path> allPath = new HashSet<>();
-        Path [] paths = {Path.of("photoBag/1.jpg"),
-                Path.of("photoBag/2.jpg"),
-                Path.of("photoBag/3.jpg"),
-                Path.of("photoBag/4.jpg"),
-                Path.of("photoBag/5.jpg"),
-                Path.of("photoBag/12.jpg"),
-                Path.of("photoBag/23.jpg")};
+
+        Path folderPath = Paths.get("photoBag/");
+
+        List<Path> paths = new ArrayList<>();
+        Files.walkFileTree(folderPath, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                paths.add(file);
+                return FileVisitResult.CONTINUE;
+            }
+        });
         Random random = new Random();
-        int countImages = random.nextInt(8);
+        int countImages = random.nextInt(paths.size() + 1);
         if (countImages != 0) {
             for (int i = 0; i < countImages; i++) {
                 Path path;
                 do {
-                    path = paths[(int) (Math.random() * paths.length)];
+                    path = paths.get((int) (Math.random() * paths.size()));
                 } while (!allPath.add(path));
                 Image image = new Image(albumId, path);
                 images.add(image);
             }
         }
         return images;
+    }
+    private static List<Tool> generateRandomTools() {
+        List<Tool> tools = new ArrayList<>();
+        Random random = new Random();
+        int status = random.nextInt(2);
+        Bright bright = new Bright();
+        Contrast contrast = new Contrast();
+        Saturation saturation = new Saturation();
+        Crop crop = new Crop();
+        Rotate rotate = new Rotate();
+
+        if (status == 1) {
+            Align align = new Align();
+            Lighten lighten = new Lighten();
+            Respective respective = new Respective();
+            tools.add(align);
+            tools.add(lighten);
+            tools.add(respective);
+        }
+        tools.add(crop);
+
+        tools.add(rotate);
+        tools.add(bright);
+        tools.add(contrast);
+        tools.add(saturation);
+        return tools;
     }
 }

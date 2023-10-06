@@ -6,6 +6,12 @@ public class Rotate extends Framing {
 
     public Rotate(String id){
         super(id);
+        setType("Rotate");
+        angel = 0;
+    }
+
+    public Rotate() {
+        setType("Rotate");
         angel = 0;
     }
 

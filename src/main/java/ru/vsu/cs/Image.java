@@ -28,13 +28,13 @@ public class Image {
     public static void setAllImagesIds(Set<String> allImagesIds) {
         Image.allImagesIds = allImagesIds;
     }
-    public LocalDateTime getDataTime() {
+    public LocalDateTime getDateTime() {
         return dataTime;
     }
-    public String getUserId() {
+    public String getAlbumId() {
         return albumId;
     }
-    public void setUserId(String userId){
+    public void setAlbumId(String userId){
         this.albumId = userId;
     }
     public String getId() {

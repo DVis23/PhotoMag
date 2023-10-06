@@ -7,4 +7,7 @@ public abstract class Framing extends Tool {
     protected Framing(String id) {
         super(id);
     }
+
+    protected Framing() {
+    }
 }

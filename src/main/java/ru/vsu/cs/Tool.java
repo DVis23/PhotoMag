@@ -1,12 +1,41 @@
 package ru.vsu.cs;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 public abstract class Tool {
-    private final String id;
+    private String id;
+    private String type;
+    private static Set<String> allToolsIds = new HashSet<>();
 
     protected Tool(String id) {
         this.id = id;
+        this.type = "";
+    }
+
+    protected Tool() {
+        do {
+            id = UUID.randomUUID().toString();
+        } while (!allToolsIds.add(id));
+        this.type = "";
+
+    }
+
+    public static Set<String> getAllToolsIds() {
+        return allToolsIds;
+    }
+    public static void setAllToolsIds(Set<String> allToolsIds) {
+        Tool.allToolsIds = allToolsIds;
     }
     public String getId() {
         return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 }
