@@ -1,7 +1,11 @@
 package ru.vsu.cs.tools.framing;
+import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Framing;
 
-public class Respective extends Framing {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Respective extends Framing implements IToolParameters {
     private int x, y, z;
 
     public Respective(String id){
@@ -13,6 +17,15 @@ public class Respective extends Framing {
     public Respective() {
         setType("Respective");
         x = 0; y = 0; z = 0;
+    }
+
+    @Override
+    public Map<String, Object> getParameters() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("x", x);
+        parameters.put("y", y);
+        parameters.put("z", z);
+        return parameters;
     }
 
     public int getX() {

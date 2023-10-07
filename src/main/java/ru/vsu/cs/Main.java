@@ -11,6 +11,7 @@ import ru.vsu.cs.tools.sliders.Contrast;
 import ru.vsu.cs.tools.sliders.Saturation;
 
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -42,29 +43,14 @@ public class Main {
             System.out.println("-Tool-");
             System.out.println("Type: " + tool.getType());
             System.out.println("Id: " + tool.getId());
-            if (tool instanceof Sliders) {
-                Sliders sliders= (Sliders) tool;
-                System.out.println("Value: " + sliders.getValue());
-            } else if (tool instanceof Align) {
-                Align align = (Align) tool;
-                System.out.println("x: " + align.getX() + "; y: " + align.getY());
-            } else if (tool instanceof Lighten) {
-                Lighten lighten = (Lighten) tool;
-                System.out.println("x: " + lighten.getX() + "; y: " + lighten.getY());
-                System.out.println("Value: " + lighten.getValue());
-            } else if (tool instanceof Crop) {
-                Crop crop = (Crop) tool;
-                System.out.println("x1: " + crop.getX1() + "; y1: " + crop.getY1());
-                System.out.println("x2: " + crop.getX2() + "; y2: " + crop.getY2());
-                System.out.println("x3: " + crop.getX3() + "; y3: " + crop.getY3());
-                System.out.println("x4: " + crop.getX4() + "; y4: " + crop.getY4());
-                System.out.println("Deformation is " + crop.isDeformation());
-            } else if (tool instanceof Respective) {
-                Respective respective = (Respective) tool;
-                System.out.println("x: " + respective.getX() + "; y: " + respective.getY() + "; z: " + respective.getZ());
-            } else if (tool instanceof Rotate) {
-                Rotate rotate = (Rotate) tool;
-                System.out.println("Angel: " + rotate.getAngel());
+            if (tool instanceof IToolParameters) {
+                IToolParameters toolWithParameters = (IToolParameters) tool;
+                Map<String, Object> parameters = toolWithParameters.getParameters();
+                for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+                    String key = entry.getKey();
+                    Object value = entry.getValue();
+                    System.out.println(key + ": " + value);
+                }
             }
         }
     }

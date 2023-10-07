@@ -1,7 +1,11 @@
 package ru.vsu.cs.tools.framing;
+import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Framing;
 
-public class Rotate extends Framing {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Rotate extends Framing implements IToolParameters {
     private int angel;
 
     public Rotate(String id){
@@ -13,6 +17,13 @@ public class Rotate extends Framing {
     public Rotate() {
         setType("Rotate");
         angel = 0;
+    }
+
+    @Override
+    public Map<String, Object> getParameters() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("angel", angel);
+        return parameters;
     }
 
     public int getAngel() {

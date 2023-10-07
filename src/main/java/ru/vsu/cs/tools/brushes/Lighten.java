@@ -1,7 +1,11 @@
 package ru.vsu.cs.tools.brushes;
+import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Brush;
 
-public class Lighten extends Brush {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Lighten extends Brush implements IToolParameters {
     private int value;
 
     public Lighten(String id){
@@ -23,5 +27,14 @@ public class Lighten extends Brush {
     }
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public Map<String, Object> getParameters() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("value", value);
+        parameters.put("x", x);
+        parameters.put("y", y);
+        return parameters;
     }
 }
