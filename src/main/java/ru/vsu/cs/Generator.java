@@ -16,14 +16,13 @@ import java.util.*;
 
 public class Generator {
 
-    public static List<User> generateUsers(int count) throws Exception {
+    public static List<User> generateUsers(int count) throws IOException {
         List<User> users = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            String uniqueId = UUID.randomUUID().toString();
             String uniqueName = generateRandomName();
 
-            User user = new User(uniqueId, uniqueName, true);
+            User user = new User(uniqueName);
             List<Album> albums = generateRandomAlbums(user.getId());
             user.addAlbums(albums);
             List<Tool> tools = generateRandomTools();

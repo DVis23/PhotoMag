@@ -22,9 +22,7 @@ public class Image {
         } while (!allImagesIds.add(id));
     }
 
-    public static Set<String> getAllImagesIds() {
-        return allImagesIds;
-    }
+    public static Set<String> getAllImagesIds() { return allImagesIds; }
     public static void setAllImagesIds(Set<String> allImagesIds) {
         Image.allImagesIds = allImagesIds;
     }

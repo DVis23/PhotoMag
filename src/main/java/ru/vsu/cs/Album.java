@@ -16,22 +16,6 @@ public class Album {
             id = UUID.randomUUID().toString();
         } while (!allAlbumsIds.add(id));
     }
-    public Album(String userId, Image img, String name){
-        this.name = name;
-        this.userId = userId;
-        do {
-            id = UUID.randomUUID().toString();
-        } while (!allAlbumsIds.add(id));
-        imageList.add(img);
-    }
-    public Album(String userId,  List<Image> listImg, String name){
-        this.name = name;
-        this.userId = userId;
-        do {
-            id = UUID.randomUUID().toString();
-        } while (!allAlbumsIds.add(id));
-        imageList.addAll(listImg);
-    }
 
     public static Set<String> getAllAlbumsIds() {
         return allAlbumsIds;
