@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.sliders;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Sliders;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Saturation extends Sliders implements IToolParameters {
+public class Saturation extends Sliders {
 
     public Saturation(String id){
         super(id);

@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.brushes;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Brush;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Align extends Brush implements IToolParameters {
+public class Align extends Brush {
 
     public Align(String id){
         super(id);

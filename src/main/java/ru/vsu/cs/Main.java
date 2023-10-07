@@ -43,14 +43,11 @@ public class Main {
             System.out.println("-Tool-");
             System.out.println("Type: " + tool.getType());
             System.out.println("Id: " + tool.getId());
-            if (tool instanceof IToolParameters) {
-                IToolParameters toolWithParameters = (IToolParameters) tool;
-                Map<String, Object> parameters = toolWithParameters.getParameters();
-                for (Map.Entry<String, Object> entry : parameters.entrySet()) {
-                    String key = entry.getKey();
-                    Object value = entry.getValue();
-                    System.out.println(key + ": " + value);
-                }
+            Map<String, Object> parameters = tool.getParameters();
+            for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                System.out.println(key + ": " + value);
             }
         }
     }

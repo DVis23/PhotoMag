@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.framing;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Framing;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Crop extends Framing implements IToolParameters {
+public class Crop extends Framing{
     private int x1, x2, x3, x4;
     private int y1, y2, y3, y4;
     private boolean deformation;

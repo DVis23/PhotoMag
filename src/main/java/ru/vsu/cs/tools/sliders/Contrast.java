@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.sliders;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Sliders;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Contrast extends Sliders implements IToolParameters {
+public class Contrast extends Sliders{
 
     public Contrast(String id){
         super(id);

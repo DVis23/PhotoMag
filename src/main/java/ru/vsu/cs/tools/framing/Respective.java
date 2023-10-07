@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.framing;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Framing;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Respective extends Framing implements IToolParameters {
+public class Respective extends Framing{
     private int x, y, z;
 
     public Respective(String id){

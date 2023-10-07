@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.framing;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Framing;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rotate extends Framing implements IToolParameters {
+public class Rotate extends Framing{
     private int angel;
 
     public Rotate(String id){

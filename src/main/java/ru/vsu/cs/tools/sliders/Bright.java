@@ -1,11 +1,10 @@
 package ru.vsu.cs.tools.sliders;
-import ru.vsu.cs.IToolParameters;
 import ru.vsu.cs.tools.Sliders;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Bright extends Sliders implements IToolParameters {
+public class Bright extends Sliders{
 
     public Bright(String id){
         super(id);

@@ -1,6 +1,7 @@
 package ru.vsu.cs;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ public abstract class Tool {
         this.type = "";
 
     }
+    public abstract Map<String, Object> getParameters();
 
     public static Set<String> getAllToolsIds() {
         return allToolsIds;
