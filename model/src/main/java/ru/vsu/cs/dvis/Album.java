@@ -1,51 +1,43 @@
 package ru.vsu.cs.dvis;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.*;
 
 public class Album {
+    private final String id;
     private String name;
-    private String id;
-    private String userId;
-    private final List<Image> imageList= new ArrayList<>();
-    private static Set<String> allAlbumsIds = new HashSet<>();
+    private final String userId;
+    private final List<Image> images = new ArrayList<>();
 
-    public Album(String userId, String name){
-        this.name = name;
+    @JsonCreator
+    public Album(@JsonProperty("id") String id, @JsonProperty("userId") String userId, @JsonProperty("name") String name) {
+        this.id = id;
         this.userId = userId;
-        do {
-            id = UUID.randomUUID().toString();
-        } while (!allAlbumsIds.add(id));
-    }
-
-    public static Set<String> getAllAlbumsIds() {
-        return allAlbumsIds;
-    }
-    public static void setAllAlbumsIds(Set<String> allAlbumsIds) {
-        Album.allAlbumsIds = allAlbumsIds;
+        this.name = name;
     }
 
     public void addImage(Image img) {
-        imageList.add(img);
+        images.add(img);
     }
-    public void addImages(List<Image> imgs) { imageList.addAll(imgs);}
+    public void addImages(List<Image> imgs) { images.addAll(imgs);}
     public void removeImage(Image img) {
-        imageList.remove(img);
+        images.remove(img);
     }
     public void removeImage(int index) {
-        imageList.remove(index);
+        images.remove(index);
     }
 
     public String getUserId() {
         return userId;
     }
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
     public String getId() {
         return id;
     }
-    public List<Image> getImageList() {
-        return new ArrayList<Image>(imageList);
+
+    public List<Image> getImages() {
+        return new ArrayList<Image>(images);
     }
 
     public String getName() {

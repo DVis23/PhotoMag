@@ -1,30 +1,16 @@
 package ru.vsu.cs.dvis.tools.framing;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.dvis.tools.Framing;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Respective extends Framing {
     private int x, y, z;
 
-    public Respective(String id){
+    @JsonCreator
+    public Respective(@JsonProperty("id") String id){
         super(id);
         setType("Respective");
         x = 0; y = 0; z = 0;
-    }
-
-    public Respective() {
-        setType("Respective");
-        x = 0; y = 0; z = 0;
-    }
-
-    @Override
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("x", x);
-        parameters.put("y", y);
-        parameters.put("z", z);
-        return parameters;
     }
 
     public int getX() {

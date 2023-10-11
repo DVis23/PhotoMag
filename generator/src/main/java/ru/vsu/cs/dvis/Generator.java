@@ -22,7 +22,8 @@ public class Generator {
         for (int i = 0; i < count; i++) {
             String uniqueName = generateRandomName();
 
-            User user = new User(uniqueName);
+            String id = UUID.randomUUID().toString();
+            User user = new User(id, uniqueName);
             List<Album> albums = generateRandomAlbums(user.getId());
             user.addAlbums(albums);
             List<Tool> tools = generateRandomTools();
@@ -50,7 +51,8 @@ public class Generator {
         int countAlbums = random.nextInt(6);
         if (countAlbums != 0) {
             for (int i = 0; i < countAlbums; i++) {
-                Album album = new Album(userId, generateRandomAlbumName());
+                String id = UUID.randomUUID().toString();
+                Album album = new Album(id, userId, generateRandomAlbumName());
                 List<Image> images = generateRandomImages(album.getId());
                 album.addImages(images);
                 albums.add(album);
@@ -81,26 +83,28 @@ public class Generator {
                 do {
                     path = paths.get((int) (Math.random() * paths.size()));
                 } while (!allPath.add(path));
-                Image image = new Image(albumId, path);
+                String id = UUID.randomUUID().toString();
+                Image image = new Image(id, albumId, path.toString());
                 images.add(image);
             }
         }
         return images;
     }
+
     private static List<Tool> generateRandomTools() {
         List<Tool> tools = new ArrayList<>();
         Random random = new Random();
         int status = random.nextInt(2);
-        Bright bright = new Bright();
-        Contrast contrast = new Contrast();
-        Saturation saturation = new Saturation();
-        Crop crop = new Crop();
-        Rotate rotate = new Rotate();
+        Bright bright = new Bright(UUID.randomUUID().toString());
+        Contrast contrast = new Contrast(UUID.randomUUID().toString());
+        Saturation saturation = new Saturation(UUID.randomUUID().toString());
+        Crop crop = new Crop(UUID.randomUUID().toString());
+        Rotate rotate = new Rotate(UUID.randomUUID().toString());
 
         if (status == 1) {
-            Align align = new Align();
-            Lighten lighten = new Lighten();
-            Respective respective = new Respective();
+            Align align = new Align(UUID.randomUUID().toString());
+            Lighten lighten = new Lighten(UUID.randomUUID().toString());
+            Respective respective = new Respective(UUID.randomUUID().toString());
             tools.add(align);
             tools.add(lighten);
             tools.add(respective);

@@ -1,28 +1,16 @@
 package ru.vsu.cs.dvis.tools.framing;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.dvis.tools.Framing;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Rotate extends Framing {
     private int angel;
 
-    public Rotate(String id){
+    @JsonCreator
+    public Rotate(@JsonProperty("id") String id){
         super(id);
         setType("Rotate");
         angel = 0;
-    }
-
-    public Rotate() {
-        setType("Rotate");
-        angel = 0;
-    }
-
-    @Override
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("angel", angel);
-        return parameters;
     }
 
     public int getAngel() {

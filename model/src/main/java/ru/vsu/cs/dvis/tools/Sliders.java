@@ -1,15 +1,15 @@
 package ru.vsu.cs.dvis.tools;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.dvis.Tool;
 
 public abstract class Sliders extends Tool {
     protected int value;
 
-    protected Sliders(String id) {
+    @JsonCreator
+    protected Sliders(@JsonProperty("id") String id) {
         super(id);
-    }
-
-    protected Sliders() {
     }
 
     public int getValue() {

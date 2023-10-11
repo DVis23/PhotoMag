@@ -1,16 +1,16 @@
 package ru.vsu.cs.dvis.tools;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.dvis.Tool;
 
 public abstract class Brush extends Tool {
     protected int x;
     protected int y;
 
-    protected Brush(String id) {
+    @JsonCreator
+    protected Brush(@JsonProperty("id") String id) {
         super(id);
-    }
-
-    protected Brush() {
     }
 
     public int getX() {

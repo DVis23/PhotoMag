@@ -1,41 +1,20 @@
 package ru.vsu.cs.dvis.tools.framing;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.dvis.tools.Framing;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Crop extends Framing {
     private int x1, x2, x3, x4;
     private int y1, y2, y3, y4;
     private boolean deformation;
 
-    public Crop(String id){
+    @JsonCreator
+    public Crop(@JsonProperty("id") String id){
         super(id);
         setType("Crop");
         x1 = 0; x2 = 0; x3 = 0; x4 = 0;
         y1 = 0; y2 = 0; y3 = 0; y4 = 0;
         deformation = false;
-    }
-
-    public Crop() {
-        setType("Crop");
-        x1 = 0; x2 = 0; x3 = 0; x4 = 0;
-        y1 = 0; y2 = 0; y3 = 0; y4 = 0;
-        deformation = false;
-    }
-
-    @Override
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("x1", x1);
-        parameters.put("y1", y1);
-        parameters.put("x2", x2);
-        parameters.put("y2", y2);
-        parameters.put("x3", x3);
-        parameters.put("y3", y3);
-        parameters.put("x4", x4);
-        parameters.put("y4", y4);
-        return parameters;
     }
 
     public int getX1() {

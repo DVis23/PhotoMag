@@ -2,4 +2,5 @@ rootProject.name = 'PhotoMag'
 include 'generator'
 include 'model'
 include 'writeJson'
+include 'readJson'
 
