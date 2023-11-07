@@ -3,4 +3,8 @@ include 'generator'
 include 'model'
 include 'writeJson'
 include 'readJson'
+include 'dataBaseFilling'
+include 'dataBaseFilling'
+include 'dataBaseConsoleCommands'
+include 'dataBaseConsole'
 

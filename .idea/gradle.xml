@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/dataBaseConsole" />
+            <option value="$PROJECT_DIR$/dataBaseConsoleCommands" />
+            <option value="$PROJECT_DIR$/dataBaseFilling" />
             <option value="$PROJECT_DIR$/generator" />
             <option value="$PROJECT_DIR$/model" />
             <option value="$PROJECT_DIR$/readJson" />
