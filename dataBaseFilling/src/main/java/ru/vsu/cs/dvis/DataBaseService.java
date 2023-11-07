@@ -16,16 +16,9 @@ public class DataBaseService {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-
             Flyway flyway = Flyway.configure().dataSource(DB_URL, DB_USER, DB_PASSWORD).load();
             flyway.baseline();
             flyway.migrate();
-            /*
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(createUserTableSQL());
-            statement.executeUpdate(createAlbumTableSQL());
-            statement.executeUpdate(createImageTableSQL());
-            statement.executeUpdate(createToolTableSQL());*/
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,19 +64,6 @@ public class DataBaseService {
         }
     }
 
-    public void executeQuery(String query) {
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("название_колонки"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void close() {
         try {
             if (connection != null) {
@@ -92,34 +72,5 @@ public class DataBaseService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private String createUserTableSQL() {
-        return "CREATE TABLE IF NOT EXISTS users (" +
-                "id UUID PRIMARY KEY," +
-                "name VARCHAR(255)," +
-                "value DOUBLE PRECISION)";
-    }
-
-    private String createAlbumTableSQL() {
-        return "CREATE TABLE IF NOT EXISTS albums (" +
-                "id UUID PRIMARY KEY," +
-                "name VARCHAR(255)," +
-                "user_id UUID NOT NULL," +
-                "FOREIGN KEY (user_id) REFERENCES users(id))";
-    }
-
-    private String createImageTableSQL() {
-        return "CREATE TABLE IF NOT EXISTS images (" +
-                "id UUID PRIMARY KEY," +
-                "location VARCHAR(255)," +
-                "album_id UUID NOT NULL," +
-                "FOREIGN KEY (album_id) REFERENCES albums(id))";
-    }
-
-    private String createToolTableSQL() {
-        return "CREATE TABLE IF NOT EXISTS tools (" +
-                "id UUID PRIMARY KEY," +
-                "type VARCHAR(255))";
     }
 }
