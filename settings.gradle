@@ -7,4 +7,6 @@ include 'dataBaseFilling'
 include 'dataBaseFilling'
 include 'dataBaseConsoleCommands'
 include 'dataBaseConsole'
+include 'databaseService'
+include 'databaseService'
 

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.vsu.cs.dvis.photomag'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':model')
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    implementation 'org.flywaydb:flyway-gradle-plugin:9.22.3'
+    implementation 'org.postgresql:postgresql:42.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
