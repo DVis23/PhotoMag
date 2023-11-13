@@ -1,14 +1,5 @@
 package ru.vsu.cs.dvis;
 
-import ru.vsu.cs.dvis.tools.brushes.Align;
-import ru.vsu.cs.dvis.tools.brushes.Lighten;
-import ru.vsu.cs.dvis.tools.framing.Crop;
-import ru.vsu.cs.dvis.tools.framing.Respective;
-import ru.vsu.cs.dvis.tools.framing.Rotate;
-import ru.vsu.cs.dvis.tools.sliders.Bright;
-import ru.vsu.cs.dvis.tools.sliders.Contrast;
-import ru.vsu.cs.dvis.tools.sliders.Saturation;
-
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -26,8 +17,6 @@ public class Generator {
             User user = new User(id, uniqueName);
             List<Album> albums = generateRandomAlbums(user.getId());
             user.addAlbums(albums);
-            List<Tool> tools = generateRandomTools();
-            user.addTools(tools);
             users.add(user);
         }
 
@@ -89,32 +78,5 @@ public class Generator {
             }
         }
         return images;
-    }
-
-    private static List<Tool> generateRandomTools() {
-        List<Tool> tools = new ArrayList<>();
-        Random random = new Random();
-        int status = random.nextInt(2);
-        Bright bright = new Bright(UUID.randomUUID().toString());
-        Contrast contrast = new Contrast(UUID.randomUUID().toString());
-        Saturation saturation = new Saturation(UUID.randomUUID().toString());
-        Crop crop = new Crop(UUID.randomUUID().toString());
-        Rotate rotate = new Rotate(UUID.randomUUID().toString());
-
-        if (status == 1) {
-            Align align = new Align(UUID.randomUUID().toString());
-            Lighten lighten = new Lighten(UUID.randomUUID().toString());
-            Respective respective = new Respective(UUID.randomUUID().toString());
-            tools.add(align);
-            tools.add(lighten);
-            tools.add(respective);
-        }
-        tools.add(crop);
-
-        tools.add(rotate);
-        tools.add(bright);
-        tools.add(contrast);
-        tools.add(saturation);
-        return tools;
     }
 }

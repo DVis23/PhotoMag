@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Image {
     private final String id;
     private String location;
-    private String albumId;
+    private final String albumId;
 
     @JsonCreator
     public Image(@JsonProperty("id") String id,
@@ -22,9 +22,6 @@ public class Image {
 
     public String getAlbumId() {
         return albumId;
-    }
-    public void setAlbumId(String userId){
-        this.albumId = userId;
     }
     public String getId() {
         return id;

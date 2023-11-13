@@ -9,4 +9,5 @@ include 'dataBaseConsoleCommands'
 include 'dataBaseConsole'
 include 'databaseService'
 include 'databaseService'
+include 'databaseCUI'
 

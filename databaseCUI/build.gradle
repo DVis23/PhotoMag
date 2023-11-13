@@ -11,10 +11,12 @@ repositories {
 
 dependencies {
     implementation project(':model')
+    implementation project(':databaseService')
     implementation project(':generator')
-    implementation project(':dataBaseFilling')
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation project(':readJson')
+    implementation project(':writeJson')
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    implementation 'org.flywaydb:flyway-gradle-plugin:9.22.3'
     implementation 'org.postgresql:postgresql:42.5.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
