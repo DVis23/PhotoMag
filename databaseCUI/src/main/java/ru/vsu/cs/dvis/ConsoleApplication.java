@@ -80,7 +80,6 @@ public class ConsoleApplication {
         User user = new User(id, name);
         user.setValue(value);
         crudService.createUser(user);
-        System.out.println("User successfully created");
     }
 
     private void createAlbum() {
@@ -100,7 +99,6 @@ public class ConsoleApplication {
 
         Album album = new Album(id, userId, name);
         crudService.createAlbum(album);
-        System.out.println("Album successfully created");
     }
 
     private void createImage() {
@@ -120,7 +118,6 @@ public class ConsoleApplication {
 
         Image image = new Image(id, albumId, location);
         crudService.createImage(image);
-        System.out.println("Image successfully created");
     }
 
     private void read() {
