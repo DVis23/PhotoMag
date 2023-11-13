@@ -32,7 +32,7 @@ public class ConsoleApplication {
             } else if (choice == 5){
                 break;
             } else {
-                errorNonExistentMenu();
+                nonExistentMenu();
             }
         }
     }
@@ -57,7 +57,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -143,7 +143,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -171,7 +171,7 @@ public class ConsoleApplication {
             } else if (choice == 5) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -221,15 +221,17 @@ public class ConsoleApplication {
     }
 
     private void printUser(User user, boolean whole) {
-        System.out.println("***------------------***");
-        System.out.println("ID: " + user.getId());
-        System.out.println("Username: " + user.getName());
-        System.out.println("Value: " + user.getValue());
-        if (whole) {
-            System.out.println("User Albums: ");
-            for (Album album : user.getAlbums()) printAlbum(album, true);
+        if (user != null) {
+            System.out.println("***------------------***");
+            System.out.println("ID: " + user.getId());
+            System.out.println("Username: " + user.getName());
+            System.out.println("Value: " + user.getValue());
+            if (whole) {
+                System.out.println("User Albums: ");
+                for (Album album : user.getAlbums()) printAlbum(album, true);
+            }
+            System.out.println("***------------------***");
         }
-        System.out.println("***------------------***");
     }
 
     private void readAlbums() {
@@ -252,7 +254,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -305,8 +307,8 @@ public class ConsoleApplication {
             if (whole) {
                 System.out.println("Album Images: ");
                 for (Image image : album.getImages()) printImage(image);
-                System.out.println("**------------**");
             }
+            System.out.println("**------------**");
         }
     }
 
@@ -330,7 +332,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -404,7 +406,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -433,7 +435,7 @@ public class ConsoleApplication {
             } else if (choice == 3) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -457,7 +459,7 @@ public class ConsoleApplication {
             }  else if (choice == 2) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -481,7 +483,7 @@ public class ConsoleApplication {
             }  else if (choice == 2) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -506,7 +508,7 @@ public class ConsoleApplication {
             } else if (choice == 4) {
                 break;
             } else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -525,12 +527,11 @@ public class ConsoleApplication {
             int choice = scanner.nextInt();
             if (choice == 1) {
                 crudService.deleteUser(id);
-                System.out.println("User successfully deleted");
                 break;
             } else if (choice == 2) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -549,12 +550,11 @@ public class ConsoleApplication {
             int choice = scanner.nextInt();
             if (choice == 1) {
                 crudService.deleteAlbum(id);
-                System.out.println("Album successfully deleted");
                 break;
             } else if (choice == 2) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
@@ -573,22 +573,21 @@ public class ConsoleApplication {
             int choice = scanner.nextInt();
             if (choice == 1) {
                 crudService.deleteImage(id);
-                System.out.println("Image successfully deleted");
                 break;
             } else if (choice == 2) {
                 break;
             }  else {
-                errorNonExistentAction();
+                nonExistentAction();
             }
         }
     }
 
-    private void errorNonExistentAction() {
+    private void nonExistentAction() {
         System.out.println("ERROR: A NON-EXISTENT ACTION HAS BEEN SELECTED");
         System.out.println();
     }
 
-    private void errorNonExistentMenu() {
+    private void nonExistentMenu() {
         System.out.println("ERROR: A NON-EXISTENT MENU HAS BEEN SELECTED");
         System.out.println();
     }

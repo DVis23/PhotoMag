@@ -89,8 +89,10 @@ public class CRUDService {
             userStatement.setObject(1, UUID.fromString(id));
             user = getUserFromRs(userStatement.executeQuery());
 
-            List<Album> albums = readAlbumByUsersId(id);
-            user.addAlbums(albums);
+            if (user != null) {
+                List<Album> albums = readAlbumByUsersId(id);
+                user.addAlbums(albums);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -223,8 +225,7 @@ public class CRUDService {
             PreparedStatement imagesStatement = connection.prepareStatement(
                     "SELECT * FROM images WHERE album_id = ?");
             imagesStatement.setObject(1, UUID.fromString(albumId));
-            Image image = getImageFromRs(imagesStatement.executeQuery());
-            images.add(image);
+            images = getImagesFromRs(imagesStatement.executeQuery());
 
         } catch (SQLException e) {
             e.printStackTrace();
