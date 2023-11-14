@@ -4,15 +4,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Image {
-    private final String id;
+    private final UUID id;
     private String location;
-    private final String albumId;
+    private final UUID albumId;
 
     @JsonCreator
-    public Image(@JsonProperty("id") String id,
-                 @JsonProperty("albumId") String albumId,
+    public Image(@JsonProperty("id") UUID id,
+                 @JsonProperty("albumId") UUID albumId,
                  @JsonProperty("location") String location) {
         this.id = id;
         this.albumId = albumId;
@@ -20,10 +21,10 @@ public class Image {
     }
 
 
-    public String getAlbumId() {
+    public UUID getAlbumId() {
         return albumId;
     }
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

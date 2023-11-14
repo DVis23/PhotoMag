@@ -21,7 +21,7 @@ public class CRUDService {
         try {
             PreparedStatement userStatement = connection.prepareStatement(
                     "INSERT INTO users (id, name, value) VALUES (?, ?, ?)");
-            userStatement.setObject(1, UUID.fromString(user.getId()));
+            userStatement.setObject(1, user.getId());
             userStatement.setString(2, user.getName());
             userStatement.setDouble(3, user.getValue());
             userStatement.executeUpdate();
@@ -39,9 +39,9 @@ public class CRUDService {
         try {
             PreparedStatement albumStatement = connection.prepareStatement(
                     "INSERT INTO albums (id, name, user_id) VALUES (?, ?, ?)");
-            albumStatement.setObject(1, UUID.fromString(album.getId()));
+            albumStatement.setObject(1, album.getId());
             albumStatement.setString(2, album.getName());
-            albumStatement.setObject(3, UUID.fromString(album.getUserId()));
+            albumStatement.setObject(3, album.getUserId());
             albumStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,9 +57,9 @@ public class CRUDService {
         try {
             PreparedStatement imageStatement = connection.prepareStatement(
                     "INSERT INTO images (id, location, album_id) VALUES (?, ?, ?)");
-            imageStatement.setObject(1, UUID.fromString(image.getId()));
+            imageStatement.setObject(1, image.getId());
             imageStatement.setString(2, image.getLocation());
-            imageStatement.setObject(3, UUID.fromString(image.getAlbumId()));
+            imageStatement.setObject(3, image.getAlbumId());
             imageStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,12 +81,12 @@ public class CRUDService {
         return users;
     }
 
-    public User readUser(String id) {
+    public User readUser(UUID id) {
         User user = null;
         try {
             PreparedStatement userStatement = connection.prepareStatement(
                     "SELECT * FROM users WHERE id = ?");
-            userStatement.setObject(1, UUID.fromString(id));
+            userStatement.setObject(1, id);
             user = getUserFromRs(userStatement.executeQuery());
 
             if (user != null) {
@@ -134,12 +134,12 @@ public class CRUDService {
         return users;
     }
 
-    public Album readAlbum(String id) {
+    public Album readAlbum(UUID id) {
         Album album = null;
         try {
             PreparedStatement albumStatement = connection.prepareStatement(
                     "SELECT * FROM albums WHERE id = ?");
-            albumStatement.setObject(1, UUID.fromString(id));
+            albumStatement.setObject(1, id);
             album = getAlbumFromRs(albumStatement.executeQuery());
 
             if (album != null) {
@@ -172,12 +172,12 @@ public class CRUDService {
         return albums;
     }
 
-    public List<Album> readAlbumByUsersId(String userId) {
+    public List<Album> readAlbumByUsersId(UUID userId) {
         List<Album> albums = new ArrayList<>();
         try {
             PreparedStatement albumStatement = connection.prepareStatement(
                     "SELECT * FROM albums WHERE user_id = ?");
-            albumStatement.setObject(1, UUID.fromString(userId));
+            albumStatement.setObject(1, userId);
             albums = getAlbumsFromRs(albumStatement.executeQuery());
 
             for (Album album : albums) {
@@ -191,12 +191,12 @@ public class CRUDService {
         return albums;
     }
 
-    public Image readImage(String id) {
+    public Image readImage(UUID id) {
         Image image = null;
         try {
             PreparedStatement imagesStatement = connection.prepareStatement(
                     "SELECT * FROM images WHERE id = ?");
-            imagesStatement.setObject(1, UUID.fromString(id));
+            imagesStatement.setObject(1, id);
             image = getImageFromRs(imagesStatement.executeQuery());
 
         } catch (SQLException e) {
@@ -219,12 +219,12 @@ public class CRUDService {
         return images;
     }
 
-    public List<Image> readImagesByAlbumId(String albumId) {
+    public List<Image> readImagesByAlbumId(UUID albumId) {
         List<Image> images = new ArrayList<>();
         try {
             PreparedStatement imagesStatement = connection.prepareStatement(
                     "SELECT * FROM images WHERE album_id = ?");
-            imagesStatement.setObject(1, UUID.fromString(albumId));
+            imagesStatement.setObject(1, albumId);
             images = getImagesFromRs(imagesStatement.executeQuery());
 
         } catch (SQLException e) {
@@ -237,8 +237,8 @@ public class CRUDService {
         List<User> users = new ArrayList<>();
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
-                String name = rs.getString("name");
+                UUID id = (UUID) rs.getObject("id");
+                String  name = rs.getString("name");
                 User user = new User(id, name);
                 user.setValue(rs.getDouble("value"));
                 users.add(user);
@@ -253,7 +253,7 @@ public class CRUDService {
         User user = null;
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
+                UUID id = (UUID) rs.getObject("id");
                 String name = rs.getString("name");
                 user = new User(id, name);
                 user.setValue(rs.getDouble("value"));
@@ -268,9 +268,9 @@ public class CRUDService {
         List<Album> albums = new ArrayList<>();
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
+                UUID id = (UUID) rs.getObject("id");
                 String name = rs.getString("name");
-                String user_id = rs.getString("user_id");
+                UUID user_id = UUID.fromString(rs.getString("user_id"));
                 Album album = new Album(id, user_id, name);
                 albums.add(album);
             }
@@ -284,9 +284,9 @@ public class CRUDService {
         Album album = null;
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
+                UUID id = (UUID) rs.getObject("id");
                 String name = rs.getString("name");
-                String user_id = rs.getString("user_id");
+                UUID user_id = UUID.fromString(rs.getString("user_id"));
                 album = new Album(id, user_id, name);
             }
         } catch (SQLException e) {
@@ -299,9 +299,9 @@ public class CRUDService {
         List<Image> images = new ArrayList<>();
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
+                UUID id = (UUID) rs.getObject("id");
                 String location = rs.getString("location");
-                String album_id = rs.getString("album_id");
+                UUID album_id = (UUID) rs.getObject("album_id");
                 Image image = new Image(id, album_id, location);
                 images.add(image);
             }
@@ -315,9 +315,9 @@ public class CRUDService {
         Image image = null;
         try {
             while (rs.next()) {
-                String id = ((UUID) rs.getObject("id")).toString();
+                UUID id = (UUID) rs.getObject("id");
                 String location = rs.getString("location");
-                String album_id = rs.getString("album_id");
+                UUID album_id = (UUID) rs.getObject("album_id");
                 image = new Image(id, album_id, location);
             }
         } catch (SQLException e) {
@@ -326,85 +326,85 @@ public class CRUDService {
         return image;
     }
 
-    public void updateUserName(String id, String name) {
+    public void updateUserName(UUID id, String name) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE users SET name = ? WHERE id  = ?");
             preparedStatement.setString(1, name);
-            preparedStatement.setObject(2, UUID.fromString(id));
+            preparedStatement.setObject(2, id);
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateUserValue(String id, double value) {
+    public void updateUserValue(UUID id, double value) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE users SET value = ? WHERE id  = ?");
             preparedStatement.setDouble(1, value);
-            preparedStatement.setObject(2, UUID.fromString(id));
+            preparedStatement.setObject(2, id);
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateAlbumName(String id, String name) {
+    public void updateAlbumName(UUID id, String name) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE albums SET name = ? WHERE id  = ?");
             preparedStatement.setString(1, name);
-            preparedStatement.setObject(2, UUID.fromString(id));
+            preparedStatement.setObject(2, id);
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateImageLocation(String id, String location) {
+    public void updateImageLocation(UUID id, String location) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE images SET location = ? WHERE id  = ?");
             preparedStatement.setString(1, location);
-            preparedStatement.setObject(2, UUID.fromString(id));
+            preparedStatement.setObject(2, id);
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteUser(String id) {
+    public void deleteUser(UUID id) {
         List<Album> albums = readAlbumByUsersId(id);
         for (Album album : albums) deleteAlbum(album.getId());
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "DELETE FROM users WHERE id = ?");
-            preparedStatement.setObject(1, UUID.fromString(id));
+            preparedStatement.setObject(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteAlbum(String id) {
+    public void deleteAlbum(UUID id) {
         List<Image> images = readImagesByAlbumId(id);
         for (Image image : images) deleteImage(image.getId());
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "DELETE FROM albums WHERE id = ?");
-            preparedStatement.setObject(1, UUID.fromString(id));
+            preparedStatement.setObject(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteImage(String id) {
+    public void deleteImage(UUID id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "DELETE FROM images WHERE id = ?");
-            preparedStatement.setObject(1, UUID.fromString(id));
+            preparedStatement.setObject(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

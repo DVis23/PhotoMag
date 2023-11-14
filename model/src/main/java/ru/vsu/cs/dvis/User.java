@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.*;
 
 public class User {
-    private final String id;
+    private final UUID id;
     private String name;
     private double value;
     private final List<Album> albums = new ArrayList<>();
 
     @JsonCreator
-    public User(@JsonProperty("id") String id, @JsonProperty("name") String name) {
+    public User(@JsonProperty("id") UUID id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
         this.value = 0;
     }
 
-    public String getId() { return id; }
+    public UUID getId() { return id; }
 
     public void addAlbum(Album album) { albums.add(album);}
     public void addAlbums(List<Album> albs) {

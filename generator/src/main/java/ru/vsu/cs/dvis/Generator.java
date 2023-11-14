@@ -13,7 +13,7 @@ public class Generator {
         for (int i = 0; i < count; i++) {
             String uniqueName = generateRandomName();
 
-            String id = UUID.randomUUID().toString();
+            UUID id = UUID.randomUUID();
             User user = new User(id, uniqueName);
             List<Album> albums = generateRandomAlbums(user.getId());
             user.addAlbums(albums);
@@ -34,13 +34,13 @@ public class Generator {
         return names[randomIndex];
     }
 
-    private static List<Album> generateRandomAlbums(String userId) throws IOException {
+    private static List<Album> generateRandomAlbums(UUID userId) throws IOException {
         List<Album> albums = new ArrayList<>();
         Random random = new Random();
         int countAlbums = random.nextInt(6);
         if (countAlbums != 0) {
             for (int i = 0; i < countAlbums; i++) {
-                String id = UUID.randomUUID().toString();
+                UUID id = UUID.randomUUID();
                 Album album = new Album(id, userId, generateRandomAlbumName());
                 List<Image> images = generateRandomImages(album.getId());
                 album.addImages(images);
@@ -50,7 +50,7 @@ public class Generator {
         return albums;
     }
 
-    private static List<Image> generateRandomImages(String albumId) throws IOException {
+    private static List<Image> generateRandomImages(UUID albumId) throws IOException {
         List<Image> images = new ArrayList<>();
         Set<Path> allPath = new HashSet<>();
 
@@ -72,7 +72,7 @@ public class Generator {
                 do {
                     path = paths.get((int) (Math.random() * paths.size()));
                 } while (!allPath.add(path));
-                String id = UUID.randomUUID().toString();
+                UUID id = UUID.randomUUID();
                 Image image = new Image(id, albumId, path.toString());
                 images.add(image);
             }

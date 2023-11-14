@@ -2,6 +2,7 @@ package ru.vsu.cs.dvis;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ConsoleApplication {
     private final Scanner scanner = new Scanner(System.in);;
@@ -68,7 +69,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
         System.out.print("Username: ");
         String name = scanner.next();
@@ -88,13 +89,13 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
         System.out.print("Album name: ");
         String name = scanner.next();
         System.out.println();
         System.out.print("User-ID (UUID format): ");
-        String userId = scanner.next();
+        UUID userId = UUID.fromString(scanner.next());
         System.out.println();
 
         Album album = new Album(id, userId, name);
@@ -107,13 +108,13 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
         System.out.print("Location: ");
         String location = scanner.next();
         System.out.println();
         System.out.print("Album-ID (UUID format): ");
-        String albumId = scanner.next();
+        UUID albumId = UUID.fromString(scanner.next());
         System.out.println();
 
         Image image = new Image(id, albumId, location);
@@ -210,7 +211,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
 
         User user = crudService.readUser(id);
@@ -275,7 +276,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("User-ID (UUID format): ");
-        String userId = scanner.next();
+        UUID userId = UUID.fromString(scanner.next());
         System.out.println();
 
         List<Album> albums = crudService.readAlbumByUsersId(userId);
@@ -288,7 +289,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("Album-ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
 
         Album album = crudService.readAlbum(id);
@@ -353,7 +354,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("User-ID (UUID format): ");
-        String albumId = scanner.next();
+        UUID albumId = UUID.fromString(scanner.next());
         System.out.println();
 
         List<Image> images = crudService.readImagesByAlbumId(albumId);
@@ -366,7 +367,7 @@ public class ConsoleApplication {
         System.out.println("Enter data:");
         System.out.println();
         System.out.print("ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         System.out.println();
 
         Image image = crudService.readImage(id);
@@ -412,7 +413,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("UPDATE THE USER");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         while (true) {
             printUser(crudService.readUser(id), false);
             System.out.println();
@@ -441,7 +442,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("UPDATE THE ALBUM");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         while (true) {
             printAlbum(crudService.readAlbum(id), false);
             System.out.println();
@@ -465,7 +466,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("UPDATE THE IMAGE");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         while (true) {
             printImage(crudService.readImage(id));
             System.out.println();
@@ -514,7 +515,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("DELETE THE USER");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         printUser(crudService.readUser(id), false);
         while (true) {
             System.out.println();
@@ -537,7 +538,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("DELETE THE ALBUM");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         printAlbum(crudService.readAlbum(id), false);
         while (true) {
             System.out.println();
@@ -560,7 +561,7 @@ public class ConsoleApplication {
         System.out.println("--------------------------------------------------------");
         System.out.println("DELETE THE IMAGE");
         System.out.print("Enter the ID (UUID format): ");
-        String id = scanner.next();
+        UUID id = UUID.fromString(scanner.next());
         printImage(crudService.readImage(id));
         while (true) {
             System.out.println();

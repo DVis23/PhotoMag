@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.*;
 
 public class Album {
-    private final String id;
+    private final UUID id;
     private String name;
-    private final String userId;
+    private final UUID userId;
     private final List<Image> images = new ArrayList<>();
 
     @JsonCreator
-    public Album(@JsonProperty("id") String id, @JsonProperty("userId") String userId, @JsonProperty("name") String name) {
+    public Album(@JsonProperty("id") UUID id, @JsonProperty("userId") UUID userId, @JsonProperty("name") String name) {
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -29,10 +29,10 @@ public class Album {
         images.remove(index);
     }
 
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
     }
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
