@@ -1,13 +1,44 @@
 package ru.vsu.cs.dvis;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 
 public class Generator {
+    private final List<String> names = new ArrayList<>();
+    private final List<String> albumNames = new ArrayList<>();
 
-    public static List<User> generateUsers(int count) throws IOException {
+    public Generator() {
+        try {
+            File file = new File("generator/list_name.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String name = scanner.nextLine();
+                names.add(name);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            File file = new File("generator/list_album_name.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String albumName = scanner.nextLine();
+                albumNames.add(albumName);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<User> generateUsers(int count) throws IOException {
         List<User> users = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -23,18 +54,16 @@ public class Generator {
         return users;
     }
 
-    private static String generateRandomName() {
-        String[] names = {"John", "Alice", "Bob", "Eva", "Alex", "Lily"};
-        int randomIndex = (int) (Math.random() * names.length);
-        return names[randomIndex];
+    private String generateRandomName() {
+        int randomIndex = (int) (Math.random() * names.size());
+        return names.get(randomIndex);
     }
-    private static String generateRandomAlbumName() {
-        String[] names = {"000", "happy birthday", "My photo", "123", "0_0", "family", "wow"};
-        int randomIndex = (int) (Math.random() * names.length);
-        return names[randomIndex];
+    private String generateRandomAlbumName() {
+        int randomIndex = (int) (Math.random() * albumNames.size());
+        return albumNames.get(randomIndex);
     }
 
-    private static List<Album> generateRandomAlbums(UUID userId) throws IOException {
+    private List<Album> generateRandomAlbums(UUID userId) throws IOException {
         List<Album> albums = new ArrayList<>();
         Random random = new Random();
         int countAlbums = random.nextInt(6);
@@ -50,7 +79,7 @@ public class Generator {
         return albums;
     }
 
-    private static List<Image> generateRandomImages(UUID albumId) throws IOException {
+    private List<Image> generateRandomImages(UUID albumId) throws IOException {
         List<Image> images = new ArrayList<>();
         Set<Path> allPath = new HashSet<>();
 
