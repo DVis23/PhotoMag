@@ -270,7 +270,7 @@ public class CRUDService {
             while (rs.next()) {
                 UUID id = (UUID) rs.getObject("id");
                 String name = rs.getString("name");
-                UUID user_id = UUID.fromString(rs.getString("user_id"));
+                UUID user_id = (UUID) rs.getObject("user_id");
                 Album album = new Album(id, user_id, name);
                 albums.add(album);
             }
@@ -286,7 +286,7 @@ public class CRUDService {
             while (rs.next()) {
                 UUID id = (UUID) rs.getObject("id");
                 String name = rs.getString("name");
-                UUID user_id = UUID.fromString(rs.getString("user_id"));
+                UUID user_id = (UUID) rs.getObject("user_id");
                 album = new Album(id, user_id, name);
             }
         } catch (SQLException e) {
