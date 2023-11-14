@@ -10,8 +10,9 @@ import java.util.*;
 public class Generator {
     private final List<String> names = new ArrayList<>();
     private final List<String> albumNames = new ArrayList<>();
+    private final List<Path> paths = new ArrayList<>();
 
-    public Generator() {
+    public Generator() throws IOException {
         try {
             File file = new File("generator/list_name.txt");
             Scanner scanner = new Scanner(file);
@@ -36,6 +37,16 @@ public class Generator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        Path folderPath = Paths.get("photoBag/");
+
+        Files.walkFileTree(folderPath, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                paths.add(file);
+                return FileVisitResult.CONTINUE;
+            }
+        });
     }
 
     public List<User> generateUsers(int count) throws IOException {
@@ -83,16 +94,6 @@ public class Generator {
         List<Image> images = new ArrayList<>();
         Set<Path> allPath = new HashSet<>();
 
-        Path folderPath = Paths.get("photoBag/");
-
-        List<Path> paths = new ArrayList<>();
-        Files.walkFileTree(folderPath, new SimpleFileVisitor<Path>() {
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                paths.add(file);
-                return FileVisitResult.CONTINUE;
-            }
-        });
         Random random = new Random();
         int countImages = random.nextInt(paths.size() + 1);
         if (countImages != 0) {
