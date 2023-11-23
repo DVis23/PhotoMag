@@ -3,7 +3,6 @@ package ru.vsu.cs.dvis;
 import org.flywaydb.core.Flyway;
 
 import java.sql.*;
-import java.util.UUID;
 
 public class DataBase {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/photo_mag";
@@ -11,6 +10,7 @@ public class DataBase {
     private static final String DB_PASSWORD = "1111";
 
     private Connection connection;
+
 
     public DataBase() {
         try {

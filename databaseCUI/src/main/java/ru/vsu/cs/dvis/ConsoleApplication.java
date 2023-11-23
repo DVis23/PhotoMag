@@ -14,7 +14,7 @@ public class ConsoleApplication {
 
     public void start() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-I--------------------------------------------------------");
             System.out.println("1 - CREATE");
             System.out.println("2 - READE");
             System.out.println("3 - UPDATE");
@@ -40,7 +40,7 @@ public class ConsoleApplication {
 
     private void create() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-II-------------------------------------------------------");
             System.out.println("CREATE");
             System.out.println();
             System.out.println("1 - CREATE THE USER");
@@ -64,7 +64,7 @@ public class ConsoleApplication {
     }
 
     private void createUser() {
-        System.out.println("--------------------------------------------------------");
+        System.out.println("-III------------------------------------------------------");
         System.out.println("CREATE THE USER");
         System.out.println("Enter data:");
         System.out.println();
@@ -84,7 +84,7 @@ public class ConsoleApplication {
     }
 
     private void createAlbum() {
-        System.out.println("--------------------------------------------------------");
+        System.out.println("-III------------------------------------------------------");
         System.out.println("CREATE THE ALBUM");
         System.out.println("Enter data:");
         System.out.println();
@@ -103,7 +103,7 @@ public class ConsoleApplication {
     }
 
     private void createImage() {
-        System.out.println("--------------------------------------------------------");
+        System.out.println("-III------------------------------------------------------");
         System.out.println("CREATE THE IMAGE");
         System.out.println("Enter data:");
         System.out.println();
@@ -123,7 +123,7 @@ public class ConsoleApplication {
 
     private void read() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-II-----------------------------------------------------");
             System.out.println("READ");
             System.out.println();
             System.out.println("1 - READ THE USERS");
@@ -148,7 +148,7 @@ public class ConsoleApplication {
 
     private void readUsers() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-III----------------------------------------------------");
             System.out.println("READ THE USERS");
             System.out.println();
             System.out.println("1 - READ ALL THE USERS");
@@ -234,7 +234,7 @@ public class ConsoleApplication {
 
     private void readAlbums() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-III----------------------------------------------------");
             System.out.println("READ THE ALBUMS");
             System.out.println();
             System.out.println("1 - READ THE ALBUMS BY NAME");
@@ -312,7 +312,7 @@ public class ConsoleApplication {
 
     private void readImages() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-III----------------------------------------------------");
             System.out.println("READ THE IMAGES");
             System.out.println();
             System.out.println("1 - READ THE IMAGES BY LOCATION");
@@ -386,7 +386,7 @@ public class ConsoleApplication {
 
     private void update() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-II-----------------------------------------------------");
             System.out.println("UPDATE");
             System.out.println();
             System.out.println("1 - UPDATE THE USER");
@@ -488,7 +488,7 @@ public class ConsoleApplication {
 
     private void delete() {
         while (true) {
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-II-----------------------------------------------------");
             System.out.println("DELETE");
             System.out.println();
             System.out.println("1 - DELETE THE USER");

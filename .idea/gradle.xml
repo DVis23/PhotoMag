@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/dataBaseConsoleCommands" />
             <option value="$PROJECT_DIR$/dataBaseFilling" />
             <option value="$PROJECT_DIR$/databaseCUI" />
+            <option value="$PROJECT_DIR$/databaseHTTP" />
             <option value="$PROJECT_DIR$/databaseService" />
             <option value="$PROJECT_DIR$/generator" />
             <option value="$PROJECT_DIR$/model" />
