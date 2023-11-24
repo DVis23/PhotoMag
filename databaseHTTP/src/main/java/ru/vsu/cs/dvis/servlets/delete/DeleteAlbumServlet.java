@@ -15,7 +15,7 @@ public class DeleteAlbumServlet extends HttpServlet {
     CRUDService crudService = new CRUDService(dataBase);
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
         UUID id = UUID.fromString(request.getParameter("id"));
 
         crudService.deleteAlbum(id);
